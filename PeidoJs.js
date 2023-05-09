@@ -30,3 +30,34 @@ console.log(numerosSemNegativos);
 git remote add origin https://github.com/TrenAcetCoder/TDE0805.git
 git branch -M main
 git push -u origin main
+
+
+
+
+/*TDE 09/05/2023*/
+
+const express = require('express');
+
+const app = express();
+
+// Definir o recurso GET /health
+app.get('/health', (req, res) => {
+  res.send('server is running');
+});
+
+// Configurar a porta de escuta
+const PORT = process.env.PORT || 3000;
+
+// Iniciar a aplicação em modo de desenvolvimento usando o Nodemon
+if (process.env.NODE_ENV !== 'production') {
+  const nodemon = require('nodemon');
+  nodemon({
+    script: 'index.js',
+    ignore: ['node_modules/**'],
+  });
+}
+
+// Iniciar a aplicação em modo de produção
+app.listen(PORT, () => {
+  console.log(`Aplicação escutando na porta ${PORT}`);
+});
